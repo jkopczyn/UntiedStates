@@ -18,6 +18,16 @@ def parse_file(filename):
         "adjacencies": adjacencies
     }
 
+def try_possibilities(graph):
+    ordered_vertices = sorted(list(graph["vertices"]))
+    pass
+
+def recurse_possibilites(graph, capitals, ordered_choices):
+    pass
+
+def evaluate_partition(graph, capital_set):
+    pass
+
 if __name__ == '__main__':
     input_file = sys.argv[1] if (len(sys.argv) > 1) else "state-connections.txt"
     graph = parse_file(input_file)
