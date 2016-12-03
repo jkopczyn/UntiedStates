@@ -23,7 +23,11 @@ def try_possibilities(graph):
     pass
 
 def recurse_possibilites(graph, capitals, ordered_choices):
-    pass
+    if not evaluate_partition(graph, capitals):
+        return []
+    subanswers = [recurse_possibilities(graph, _, ordered_choices[idx+1:])
+            for capital, idx in enumerate(ordered_choices)]
+    return [answer for l in subanswers for answer in l]
 
 def evaluate_partition(graph, capital_set):
     pass
