@@ -22,12 +22,19 @@ def try_possibilities(graph):
     ordered_vertices = sorted(list(graph["vertices"]))
     pass
 
+flatten_once = lambda l: [item for sublist in l for item in sublist]
+
 def recurse_possibilites(graph, capitals, ordered_choices):
     if not evaluate_partition(graph, capitals):
         return []
-    subanswers = [recurse_possibilities(graph, _, ordered_choices[idx+1:])
-            for capital, idx in enumerate(ordered_choices)]
-    return [answer for l in subanswers for answer in l]
+    return flatten_once([
+            recurse_possibilities(
+                graph,
+                capitals.union(set([capital])),
+                ordered_choices[idx+1:]
+                )
+            for capital, idx in enumerate(ordered_choices)
+        ])
 
 def evaluate_partition(graph, capital_set):
     pass
