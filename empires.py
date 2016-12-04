@@ -20,13 +20,15 @@ def parse_file(filename):
 
 def try_possibilities(graph):
     ordered_vertices = sorted(list(graph["vertices"]))
-    pass
+    return recurse_possibilities(graph, set(), ordered_vertices)
 
 flatten_once = lambda l: [item for sublist in l for item in sublist]
 
 def recurse_possibilites(graph, capitals, ordered_choices):
     if not evaluate_partition(graph, capitals):
         return []
+    if not ordered_choices:
+        return capitals
     return flatten_once([
             recurse_possibilities(
                 graph,
